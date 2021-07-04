@@ -54,7 +54,6 @@ const PostList: FunctionComponent<PostListProps> = function ({
     selectedCategory,
     posts,
   );
-
   return (
     <PostListWrapper ref={containerRef}>
       {postList.map(
