@@ -42,7 +42,7 @@ const PostItemContent = styled.div`
   padding: 15px;
 `;
 
-const Title = styled.div`
+const Title = styled.h1`
   display: -webkit-box;
   overflow: hidden;
   margin-bottom: 3px;
@@ -52,10 +52,9 @@ const Title = styled.div`
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   font-size: 20px;
-  font-weight: 700;
 `;
 
-const Date = styled.div`
+const Date = styled.h2`
   font-size: 14px;
   font-weight: 400;
   opacity: 0.7;

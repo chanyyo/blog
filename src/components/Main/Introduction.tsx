@@ -26,19 +26,17 @@ const Wrapper = styled.div`
   }
 `;
 
-const SubTitle = styled.div`
+const SubTitle = styled.h2`
   font-size: 20px;
-  font-weight: 400;
 
   @media (max-width: 768px) {
     font-size: 15px;
   }
 `;
 
-const Title = styled.div`
+const Title = styled.h1`
   margin-top: 5px;
   font-size: 35px;
-  font-weight: 700;
 
   @media (max-width: 768px) {
     font-size: 25px;
