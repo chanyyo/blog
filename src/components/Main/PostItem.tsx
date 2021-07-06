@@ -78,9 +78,9 @@ const CategoryItem = styled.div`
 `;
 
 const Summary = styled.div`
-  display: -webkit-box;
+  display: ${props => (props.act ? '-webkit-box' : '')};
   overflow: hidden;
-  margin-top: auto;
+  margin-top: ${props => (props.act ? 'auto' : '')};
   text-overflow: ellipsis;
   white-space: normal;
   overflow-wrap: break-word;
@@ -98,7 +98,7 @@ const PostItem: FunctionComponent<PostItemProps> = function ({
   thumbnail,
   link,
 }) {
-  console.log(thumbnail);
+  const active = thumbnail === null ? false : true;
   return (
     <PostItemWrapper to={link}>
       {thumbnail === null ? (
@@ -117,7 +117,7 @@ const PostItem: FunctionComponent<PostItemProps> = function ({
             <CategoryItem key={item}>{item}</CategoryItem>
           ))}
         </Category>
-        <Summary>{summary}</Summary>
+        <Summary act={active}>{summary}</Summary>
       </PostItemContent>
     </PostItemWrapper>
   );
