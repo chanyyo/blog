@@ -95,15 +95,20 @@ const PostItem: FunctionComponent<PostItemProps> = function ({
   date,
   categories,
   summary,
-  thumbnail: {
-    childImageSharp: { fluid },
-  },
+  thumbnail,
   link,
 }) {
+  console.log(thumbnail);
   return (
     <PostItemWrapper to={link}>
-      <ThumbnailImage fluid={fluid} alt="Post Item Image" />
-
+      {thumbnail === null ? (
+        ''
+      ) : (
+        <ThumbnailImage
+          fluid={thumbnail.childImageSharp.fluid}
+          alt="Post Item Image"
+        />
+      )}
       <PostItemContent>
         <Title>{title}</Title>
         <Date>{date}</Date>
