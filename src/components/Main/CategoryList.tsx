@@ -23,7 +23,6 @@ const CategoryListWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   width: 1208px;
-  margin: 100px auto 0;
 
   @media (max-width: 1208px) {
     padding: 20px;

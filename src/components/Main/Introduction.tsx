@@ -5,9 +5,14 @@ import ProfileImage, { ProfileImageProps } from 'components/Main/ProfileImage';
 type IntroductionProps = ProfileImageProps;
 
 const Background = styled.div`
-  width: 100%;
-  background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);
-  color: #ffffff;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 350px;
+  height: 100%;
+  z-index: 999;
+  border-right: 1px solid rgba(230, 230, 230, 1);
 `;
 
 const Wrapper = styled.div`
@@ -15,7 +20,6 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  width: 768px;
   height: 400px;
   margin: 0 auto;
 
