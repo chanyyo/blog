@@ -6,7 +6,23 @@ import PostList, { PostType } from 'components/Main/PostList';
 import { ProfileImageProps } from 'components/Main/ProfileImage';
 import { graphql } from 'gatsby';
 import queryString, { ParsedQuery } from 'query-string';
+import styled from '@emotion/styled';
 
+const Tags = styled.div`
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 350px;
+  height: 100%;
+  z-index: 999;
+  border-left: 1px solid rgba(230, 230, 230, 1);
+`;
+
+const MainContent = styled.div`
+  padding-left: calc(100% - (100% - 370px));
+  padding-right: calc(100% - (100% - 370px));
+`;
 interface IndexPageProps {
   location: {
     search: string;
@@ -65,12 +81,15 @@ const IndexPage: FunctionComponent<IndexPageProps> = function ({
 
   return (
     <Template>
-      <Introduction profileImage={fluid} />
-      <CategoryList
-        selectedCategory={selectedCategory}
-        categoryList={categoryList}
-      />
-      <PostList selectedCategory={selectedCategory} posts={edges} />
+      <Introduction profileImage={fluid} />{' '}
+      <MainContent>
+        <CategoryList
+          selectedCategory={selectedCategory}
+          categoryList={categoryList}
+        />
+        <PostList selectedCategory={selectedCategory} posts={edges} />
+      </MainContent>
+      <Tags>fsdfsd</Tags>
     </Template>
   );
 };
@@ -96,8 +115,8 @@ export const getPostList = graphql`
             thumbnail {
               childImageSharp {
                 fluid(
-                  maxWidth: 768
-                  maxHeight: 200
+                  maxWidth: 200
+                  maxHeight: 134
                   fit: INSIDE
                   quality: 100
                 ) {

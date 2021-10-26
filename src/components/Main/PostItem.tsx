@@ -2,6 +2,7 @@ import React, { FunctionComponent } from 'react';
 import styled from '@emotion/styled';
 import { Link } from 'gatsby';
 import Img, { FluidObject } from 'gatsby-image';
+import ProfileImage from 'components/Main/ProfileImage';
 
 interface PostItemProps {
   title: string;
@@ -14,29 +15,30 @@ interface PostItemProps {
     };
   };
   link: string;
+  profileImage: FluidObject;
 }
 
 const PostItemWrapper = styled(Link)`
-  display: flex;
-  flex-direction: column;
-  border-radius: 10px;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
-  transition: 0.3s box-shadow;
-  cursor: pointer;
+  margin-bottom: 48px;
+`;
 
-  &:hover {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  }
+const PostCard = styled.div`
+  justify-content: space-between;
+  display: flex;
+`;
+
+const SubContent = styled.div`
+  display: flex;
+  align-items: center;
 `;
 
 const ThumbnailImage = styled(Img)`
-  width: 100%;
-  height: 200px;
-  border-radius: 10px 10px 0 0;
+  width: 200px;
+  aspect-ratio: auto 200 / 134;
+  height: 134px;
 `;
 
 const PostItemContent = styled.div`
-  flex: 1;
   display: flex;
   flex-direction: column;
   padding: 15px;
@@ -58,6 +60,7 @@ const Date = styled.h2`
   font-size: 14px;
   font-weight: 400;
   opacity: 0.7;
+  padding-right: 10px;
 `;
 
 const Category = styled.div`
@@ -78,9 +81,9 @@ const CategoryItem = styled.div`
 `;
 
 const Summary = styled.div`
-  display: -webkit-box;
+  display: ${props => (props.act ? '-webkit-box' : '')};
   overflow: hidden;
-  margin-top: auto;
+  margin-top: ${props => (props.act ? 'auto' : '')};
   text-overflow: ellipsis;
   white-space: normal;
   overflow-wrap: break-word;
@@ -97,28 +100,35 @@ const PostItem: FunctionComponent<PostItemProps> = function ({
   summary,
   thumbnail,
   link,
+  profileImage,
 }) {
-  console.log(thumbnail);
+  const active = thumbnail === null ? false : true;
   return (
     <PostItemWrapper to={link}>
-      {thumbnail === null ? (
-        ''
-      ) : (
-        <ThumbnailImage
-          fluid={thumbnail.childImageSharp.fluid}
-          alt="Post Item Image"
-        />
-      )}
-      <PostItemContent>
-        <Title>{title}</Title>
-        <Date>{date}</Date>
-        <Category>
-          {categories.map(item => (
-            <CategoryItem key={item}>{item}</CategoryItem>
-          ))}
-        </Category>
-        <Summary>{summary}</Summary>
-      </PostItemContent>
+      <PostCard>
+        <ProfileImage profileImage={profileImage} />
+        <PostItemContent>
+          <Title>{title}</Title>
+          <Summary act={active}>{summary}</Summary>
+          <SubContent>
+            <Date>{date}</Date>
+            <Category>
+              {categories.map(item => (
+                <CategoryItem key={item}>{item}</CategoryItem>
+              ))}
+            </Category>
+          </SubContent>
+        </PostItemContent>
+
+        {thumbnail === null ? (
+          ''
+        ) : (
+          <ThumbnailImage
+            fluid={thumbnail.childImageSharp.fluid}
+            alt="Post Item Image"
+          />
+        )}
+      </PostCard>
     </PostItemWrapper>
   );
 };

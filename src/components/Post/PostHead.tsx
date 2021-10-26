@@ -45,13 +45,18 @@ const PostHead: FunctionComponent<PostHeadProps> = function ({
   title,
   date,
   categories,
-  thumbnail: {
-    childImageSharp: { fluid },
-  },
+  thumbnail,
 }) {
   return (
     <PostHeadWrapper>
-      <BackgroundImage fluid={fluid} alt="thumbnail" />
+      {thumbnail === null ? (
+        ''
+      ) : (
+        <BackgroundImage
+          fluid={thumbnail.childImageSharp.fluid}
+          alt="thumbnail"
+        />
+      )}
       <PostHeadInfo title={title} date={date} categories={categories} />
     </PostHeadWrapper>
   );
